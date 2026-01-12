@@ -1,0 +1,47 @@
+:root {
+  --pink: #ff7aa2;
+  --pink-light: #ffe5ef;
+  --bg: #fff0f6;
+  --card: #ffffff;
+  --text: #5a1f33;
+  --radius: 20px;
+  --shadow: 0 15px 40px rgba(255, 122, 162, 0.2);
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: radial-gradient(circle at top, #ffeef5, #ffd1e4);
+  color: var(--text);
+}
+
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px;
+}
+
+.btn {
+  background: var(--pink);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.badge {
+  background: white;
+  padding: 8px 14px;
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+}
+
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+
+.title { min-width: 0; }
+.title h1 { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.points-pill { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }

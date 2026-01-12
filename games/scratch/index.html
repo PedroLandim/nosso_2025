@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Raspadinha 💝</title>
+
+    <link rel="stylesheet" href="../shared/ui.css" />
+    <link rel="stylesheet" href="./scratch.css" />
+  </head>
+
+  <body>
+    <div class="page">
+      <header class="topbar" aria-label="Cabeçalho da Raspadinha">
+        <a class="back-btn" href="../hub/index.html" aria-label="Voltar para o menu">
+          ← voltar
+        </a>
+
+        <div class="title">
+          <h1>Raspadinha 💝</h1>
+          <p id="subtitle">Raspe para revelar uma cartinha e ganhar uma surpresa.</p>
+        </div>
+
+        <div class="points-pill" aria-label="Pontuação atual">
+          Pontos: <span id="points">0</span>
+        </div>
+      </header>
+
+      <main class="content" aria-labelledby="gameTitle" aria-describedby="subtitle">
+        <section class="card" aria-label="Área do jogo">
+          <div class="scratch-wrap" aria-label="Área da raspadinha">
+            <div id="prizeCard" class="prize" aria-live="polite">
+              <h2 id="prizeTitle">🎁</h2>
+              <p id="prizeText">Clique em “Nova raspadinha”.</p>
+            </div>
+
+            <canvas
+              id="scratch"
+              width="640"
+              height="360"
+              role="img"
+              aria-label="Raspadinha: passe o dedo ou o mouse para raspar e revelar o prêmio"
+            ></canvas>
+          </div>
+
+          <div class="actions" aria-label="Ações do jogo">
+            <button id="newBtn" class="btn-primary" type="button">
+              Nova raspadinha
+            </button>
+
+            <button id="resetBtn" class="btn-ghost" type="button">
+              Reiniciar
+            </button>
+          </div>
+
+          <div
+            id="status"
+            class="status"
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+          ></div>
+        </section>
+      </main>
+
+      <footer class="footer">Feito com carinho por Mozi 💗</footer>
+
+      <script type="module" src="./scratch.js"></script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adivinha 1–20</title>
+
+    <link rel="stylesheet" href="../shared/ui.css" />
+    <link rel="stylesheet" href="./guess.css" />
+  </head>
+
+  <body>
+    <div class="page">
+      <header class="topbar">
+        <a class="back-btn" href="../hub/index.html">← voltar</a>
+
+        <div class="title">
+            <h1>Adivinha (1 a 20) 🎯</h1>
+            <p>Você tem <b>5 tentativas</b>. Acertou? ganha pontos!</p>
+        </div>
+
+        <div class="points-pill">Pontos: <span id="points">0</span></div>
+      </header>
+
+      <main class="content">
+        <section class="card">
+          <div class="row">
+            <input id="guessInput" type="number" min="1" max="20" placeholder="1..20" />
+            <button id="guessBtn" class="btn-primary">Chutar</button>
+          </div>
+
+          <div class="meta">
+            <span>Tentativas: <b id="tries">5</b></span>
+            <button id="resetBtn" class="btn-soft">Novo número</button>
+          </div>
+
+          <div id="msg" class="msg" aria-live="polite"></div>
+        </section>
+      </main>
+
+      <footer class="footer">Feito com carinho por Mozi 💗</footer>
+    </div>
+
+    <script type="module" src="./guess.js"></script>
+  </body>
+</html>

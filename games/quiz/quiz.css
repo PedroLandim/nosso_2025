@@ -1,0 +1,261 @@
+/* quiz.css (clean + mobile-first) */
+
+*{ box-sizing: border-box; }
+body{ overflow-x: hidden; }
+
+.page{
+  min-height: 100vh;
+  padding: 14px 14px calc(22px + env(safe-area-inset-bottom));
+}
+
+/* Header clean + sticky (mesmo padrão) */
+.topbar{
+  width: min(900px, 100%);
+  margin: 0 auto 14px;
+
+  position: sticky;
+  top: 10px;
+  z-index: 20;
+
+  display: grid;
+  grid-template-areas:
+    "back points"
+    "title title";
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+
+  padding: 12px;
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 105, 150, 0.18);
+  backdrop-filter: blur(12px);
+}
+
+.back-btn{
+  grid-area: back;
+  justify-self: start;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 900;
+  font-size: 0.9rem;
+
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 105, 150, 0.18);
+
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.back-btn:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(0,0,0,.06);
+}
+
+.title{
+  grid-area: title;
+  min-width: 0;
+}
+.title h1{
+  margin: 0;
+  font-size: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.title p{
+  margin: 4px 0 0;
+  opacity: .75;
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+.points-pill{
+  grid-area: points;
+  justify-self: end;
+
+  background: rgba(255,255,255,.6);
+  border: 1px solid rgba(255,105,150,.18);
+  padding: 10px 12px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: .9rem;
+
+  white-space: nowrap;
+  max-width: 46vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.content{
+  width: min(900px, 100%);
+  margin: 0 auto;
+}
+
+/* Card */
+.card{
+  background: rgba(255,255,255,.65);
+  border: 1px solid rgba(255,105,150,.16);
+  border-radius: 18px;
+  padding: 16px;
+  box-shadow: 0 12px 28px rgba(0,0,0,.06);
+}
+
+/* Head da pergunta */
+.qhead{
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: start;
+}
+
+.qleft{
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+
+.qcount{
+  width: fit-content;
+  padding: 8px 10px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 12px;
+  opacity: .95;
+
+  background: rgba(255,255,255,.6);
+  border: 1px solid rgba(255,105,150,.18);
+}
+
+.qhead h2{
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: .01em;
+}
+
+.qdesc{
+  margin: 6px 0 0;
+  opacity: .8;
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+/* Botão Próxima */
+#nextQ{
+  border: 1px solid rgba(255,105,150,.18);
+  background: rgba(255,255,255,.65);
+  color: var(--text);
+  padding: 10px 12px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: .85rem;
+  cursor: pointer;
+  transition: transform .12s ease, box-shadow .12s ease;
+  -webkit-tap-highlight-color: transparent;
+  height: fit-content;
+}
+
+#nextQ:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(0,0,0,.06);
+}
+
+#nextQ:disabled{
+  opacity: .7;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Opções */
+.options{
+  margin-top: 14px;
+  display: grid;
+  gap: 10px;
+}
+
+.opt{
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 14px;
+
+  border: 1px solid rgba(255,105,150,.18);
+  background: rgba(255,255,255,.75);
+  cursor: pointer;
+
+  font-weight: 900;
+  text-align: left;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  transition: transform .10s ease, box-shadow .12s ease, filter .12s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.opt:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(0,0,0,.06);
+}
+
+.opt:active{ transform: translateY(0); }
+
+.opt:disabled{
+  opacity: .72;
+  cursor: default;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Resultado (banner) */
+.result{
+  margin-top: 12px;
+  min-height: 44px;
+  padding: 12px 14px;
+  border-radius: 16px;
+
+  background: rgba(255,255,255,.55);
+  border: 1px solid rgba(255,105,150,.14);
+
+  font-weight: 900;
+}
+
+.result[data-type="success"]{ border-color: rgba(30,200,120,.22); }
+.result[data-type="warn"]{ border-color: rgba(255,170,0,.24); }
+.result[data-type="danger"]{ border-color: rgba(255,80,120,.22); }
+
+.footer{
+  margin-top: 14px;
+  text-align: center;
+  font-size: .8rem;
+  opacity: .8;
+}
+
+/* Mobile: qhead empilha e botão fica grande */
+@media (max-width: 520px){
+  .qhead{
+    grid-template-columns: 1fr;
+  }
+  #nextQ{
+    width: 100%;
+  }
+}
+
+/* Tablet/Desktop */
+@media (min-width: 560px){
+  .topbar{
+    grid-template-areas: "back title points";
+    grid-template-columns: 140px minmax(0, 1fr) 170px;
+    align-items: center;
+  }
+  .title h1{ font-size: 22px; }
+}

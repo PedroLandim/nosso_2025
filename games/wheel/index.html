@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Roleta 🎡</title>
+
+  <link rel="stylesheet" href="../shared/ui.css" />
+  <link rel="stylesheet" href="wheel.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <a class="back-btn" href="../hub/index.html">← voltar</a>
+
+      <div class="title">
+        <h1>Roleta 🎡</h1>
+        <p>Custa <b>100</b> pontos por giro. Pode ganhar pontos ou recompensas 💖</p>
+      </div>
+
+      <div class="points-pill">Pontos: <span id="points">0</span></div>
+    </header>
+
+    <main class="content">
+      <section class="wheel-card">
+        <div class="wheel-area">
+          <div class="pointer" aria-hidden="true"></div>
+          <canvas id="wheel" width="420" height="420"></canvas>
+        </div>
+
+        <div class="controls">
+          <div class="info">
+            <div class="cost">Custa <b>100 pontos</b> por giro</div>
+            <div class="hint">Pode ganhar pontos, perder um pouquinho, ou ganhar recompensas 💖</div>
+          </div>
+
+          <button id="spin">Girar 🎡</button>
+
+          <div class="result" id="result" aria-live="polite"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">Feito com carinho por Mozi 💗</footer>
+
+    <script type="module" src="wheel.js"></script>
+  </div>
+</body>
+</html>

@@ -1,0 +1,263 @@
+.page {
+  min-height: 100vh;
+  padding: 14px 14px 22px;
+}
+
+/* Header “clean” e sticky (igual vibe do hub) */
+.topbar {
+  width: min(900px, 100%);
+  margin: 0 auto 14px;
+
+  position: sticky;
+  top: 10px;
+  z-index: 20;
+
+  display: grid;
+  grid-template-areas:
+    "back points"
+    "title title";
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+
+  padding: 12px;
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 105, 150, 0.18);
+  backdrop-filter: blur(12px);
+}
+
+.back-btn {
+  grid-area: back;
+  justify-self: start;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 800;
+  font-size: 0.9rem;
+
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 105, 150, 0.18);
+
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.back-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.06);
+}
+
+.title {
+  grid-area: title;
+}
+
+.title h1 {
+  margin: 0;
+  font-size: 20px;
+  letter-spacing: 0.01em;
+}
+
+.title p {
+  margin: 4px 0 0 0;
+  opacity: 0.75;
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+.points-pill {
+  grid-area: points;
+  justify-self: end;
+
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 105, 150, 0.18);
+  padding: 10px 12px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 0.9rem;
+}
+
+.content {
+  width: min(900px, 100%);
+  margin: 0 auto;
+}
+
+/* Card central */
+.card.center {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  padding: 18px;
+}
+
+/* Botão coração */
+.heart {
+  width: 150px;
+  height: 150px;
+  border-radius: 999px;
+
+  border: 1px solid rgba(255, 105, 150, 0.22);
+  background: rgba(255, 255, 255, 0.7);
+
+  cursor: pointer;
+  font-size: 64px;
+
+  display: grid;
+  place-items: center;
+
+  transition: transform 0.08s ease, box-shadow 0.18s ease;
+  user-select: none;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.06);
+}
+
+.heart:hover {
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+}
+
+.heart:active {
+  transform: scale(0.96);
+}
+
+.heart.disabled {
+  cursor: not-allowed;
+  opacity: 0.92;
+}
+
+/* animação “pop” */
+.heart.pulse {
+  animation: heartPop 180ms ease-out;
+}
+
+@keyframes heartPop {
+  0% { transform: scale(1); }
+  55% { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+
+/* Stats */
+.meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 100%;
+  max-width: 420px;
+}
+
+.stat {
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 105, 150, 0.16);
+  padding: 10px 12px;
+  border-radius: 14px;
+  text-align: center;
+}
+
+.k {
+  display: block;
+  font-weight: 900;
+}
+
+.s {
+  display: block;
+  opacity: 0.7;
+  font-size: 12px;
+}
+
+/* Toast */
+.toast {
+  min-height: 22px;
+  opacity: 0.9;
+  font-weight: 700;
+}
+
+/* +1 flutuando */
+.float {
+  position: absolute;
+  left: 50%;
+  top: 54%;
+  transform: translate(-50%, -50%);
+  font-weight: 900;
+  opacity: 0.95;
+  animation: floatUp 750ms ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translate(calc(-50% + var(--dx, 0px)), -50%) scale(0.96);
+    opacity: 0.95;
+  }
+  100% {
+    transform: translate(calc(-50% + var(--dx, 0px)), -110%) scale(1.05);
+    opacity: 0;
+  }
+}
+
+/* Footer */
+.footer {
+  margin-top: 14px;
+  text-align: center;
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+/* Responsivo */
+@media (min-width: 560px) {
+  .topbar {
+    grid-template-areas: "back title points";
+    grid-template-columns: 140px 1fr 170px;
+    align-items: center;
+  }
+
+  .title h1 {
+    font-size: 22px;
+  }
+
+  .heart {
+    width: 170px;
+    height: 170px;
+    font-size: 72px;
+  }
+
+  .card.center {
+    padding: 22px;
+  }
+}
+
+@media (max-width: 380px) {
+  .meta {
+    grid-template-columns: 1fr;
+  }
+
+  .heart {
+    width: 140px;
+    height: 140px;
+    font-size: 60px;
+  }
+}
+
+.heart,
+.back-btn,
+.btn-ghost,
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+/* Evita zoom/atrasos e melhora resposta do toque */
+.heart {
+  touch-action: manipulation;
+  outline: none; /* remove outline padrão (o azul) */
+}
+
+/* Mantém acessibilidade pra teclado (desktop) */
+.heart:focus-visible {
+  outline: 3px solid rgba(255, 105, 150, 0.25);
+  outline-offset: 3px;
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Nosso 2025 💗</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+  <script type="module" src="script.js"></script>
+</head>
+<body>
+
+  <main class="page">
+    <header>
+      <div class="name">Nosso 2025 💗</div>
+      <p class="subtitle">
+        Eu te amo, obrigado por fazer de 2025 um ano tão bom.
+      </p>
+      <a class="filter-btn games-cta" href="./games/hub/index.html">Jogos 💗</a>
+    </header>
+
+    <!-- Tempo juntos -->
+    <section class="time-section card">
+        <h2>Tempo Juntos</h2>
+        <div class="time-grid" id="time-grid">
+            <div class="time-box">
+            <span class="value" id="years">00</span>
+            <span class="label">Anos</span>
+            </div>
+            <div class="time-box">
+            <span class="value" id="months">00</span>
+            <span class="label">Meses</span>
+            </div>
+            <div class="time-box">
+            <span class="value" id="days">00</span>
+            <span class="label">Dias</span>
+            </div>
+            <div class="time-box">
+            <span class="value" id="hours">00</span>
+            <span class="label">Horas</span>
+            </div>
+            <div class="time-box">
+            <span class="value" id="minutes">00</span>
+            <span class="label">Minutos</span>
+            </div>
+            <div class="time-box">
+            <span class="value" id="seconds">00</span>
+            <span class="label">Segundos</span>
+            </div>
+        </div>
+        </section>
+
+        <!-- Galeria 2025 -->
+        <section class="gallery-section card">
+    <div class="gallery-header">
+        <div class="gallery-title">
+        Nossas fotinhas em 2025
+        </div>
+        <div class="filters">
+        <button class="filter-btn active" data-filter="all">Tudo</button>
+        <button class="filter-btn" data-filter="jan">Janeiro</button>
+        <button class="filter-btn" data-filter="fev">Fevereiro</button>
+        <button class="filter-btn" data-filter="mar">Março</button>
+        <button class="filter-btn" data-filter="abril">Abril</button>
+        <button class="filter-btn" data-filter="mai">Maio</button>
+        <button class="filter-btn" data-filter="jun">Junho</button>
+        <button class="filter-btn" data-filter="jul">Julho</button>
+        <button class="filter-btn" data-filter="ago">Agosto</button>
+        <button class="filter-btn" data-filter="set">Setembro</button>
+        <button class="filter-btn" data-filter="out">Outubro</button>
+        <button class="filter-btn" data-filter="nov">Novembro</button>
+        <button class="filter-btn" data-filter="dez">Dezembro</button>
+        <button class="filter-btn" data-filter="random">Momentos aleatórios</button>
+        </div>
+    </div>
+
+    <div class="gallery-grid" id="gallery">
+        <!-- As fotos vão ser inseridas aqui via JavaScript -->
+    </div>
+    </section>
+
+    <footer>
+      Feito com carinho em 2025 por Mozi 🥰
+    </footer>
+  </main>
+
+  <!-- Modal da foto -->
+  <div class="modal-backdrop" id="modal-backdrop">
+    <div class="modal">
+      <button class="modal-close" id="modal-close">fechar ✕</button>
+      <button class="nav-arrow left" id="prev-photo">❮</button>
+      <button class="nav-arrow right" id="next-photo">❯</button>
+      <img id="modal-image" src="" alt="" />
+      <div class="modal-info" id="modal-info"></div>
+    </div>
+  </div>
+</body>
+</html>

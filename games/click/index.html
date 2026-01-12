@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clique do Amor</title>
+
+    <link rel="stylesheet" href="../shared/ui.css" />
+    <link rel="stylesheet" href="./click.css" />
+  </head>
+
+  <body>
+    <div class="page">
+      <header class="topbar">
+        <a class="back-btn" href="../hub/index.html">← voltar</a>
+
+        <div class="title">
+            <h1>Clique do Amor 💞</h1>
+            <p>Clique no coração e ganhe pontos.</p>
+        </div>
+
+        <div class="points-pill">Pontos: <span id="points">0</span></div>
+    </header>
+
+      <main class="content">
+        <section class="card center">
+          <button id="heartBtn" class="heart" aria-label="Clique do Amor">
+            ❤️
+          </button>
+
+          <div class="meta">
+            <div class="stat">
+              <span class="k">+1</span>
+              <span class="s">por clique</span>
+            </div>
+            <div class="stat">
+              <span class="k" id="cooldownText">ok</span>
+              <span class="s">status</span>
+            </div>
+          </div>
+
+          <div id="toast" class="toast" aria-live="polite"></div>
+        </section>
+      </main>
+
+      <footer class="footer">Feito com carinho por Mozi 💗</footer>
+    </div>
+
+    <script type="module" src="./click.js"></script>
+  </body>
+</html>

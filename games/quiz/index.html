@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz do Amor</title>
+
+    <link rel="stylesheet" href="../shared/ui.css" />
+    <link rel="stylesheet" href="./quiz.css" />
+  </head>
+
+  <body>
+    <div class="page">
+      <header class="topbar">
+        <a class="back-btn" href="../hub/index.html">← voltar</a>
+
+        <div class="title">
+          <h1>Quiz do Amor 💌</h1>
+          <p>Responde e ganha bônus 💘</p>
+        </div>
+
+        <div class="points-pill">
+          Pontos: <span id="points">0</span>
+        </div>
+      </header>
+
+      <main class="content">
+        <section class="card">
+          <div class="qhead">
+            <div class="qleft">
+                <div class="qcount" id="qCount">Pergunta 1/15</div>
+
+                <div>
+                <h2 id="qTitle">Pergunta</h2>
+                <p id="qDesc" class="qdesc"></p>
+                </div>
+            </div>
+
+            <button id="nextQ" class="btn-ghost">Próxima</button>
+          </div>
+
+          <div id="options" class="options"></div>
+
+          <div id="result" class="result" aria-live="polite"></div>
+        </section>
+      </main>
+
+      <footer class="footer">Feito com carinho por Mozi 💗</footer>
+    </div>
+
+    <script type="module" src="./quiz.js"></script>
+  </body>
+</html>

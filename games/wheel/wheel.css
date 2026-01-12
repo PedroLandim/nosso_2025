@@ -1,0 +1,253 @@
+/* wheel.css (clean + mobile-first) */
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+
+.page{
+  min-height: 100vh;
+  padding: 14px 14px calc(22px + env(safe-area-inset-bottom));
+}
+
+/* Topbar no mesmo padrão dos outros */
+.topbar{
+  width: min(900px, 100%);
+  margin: 0 auto 14px;
+
+  position: sticky;
+  top: 10px;
+  z-index: 20;
+
+  display: grid;
+  grid-template-areas:
+    "back points"
+    "title title";
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+
+  padding: 12px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 105, 150, 0.18);
+  backdrop-filter: blur(12px);
+}
+
+.back-btn{
+  grid-area: back;
+  justify-self: start;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 10px 12px;
+  border-radius: 999px;
+  text-decoration: none;
+
+  color: var(--text);
+  font-weight: 900;
+  font-size: 0.9rem;
+
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 105, 150, 0.18);
+  transition: transform .12s ease, box-shadow .12s ease;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+.back-btn:active{ transform: translateY(0); }
+.back-btn:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(0,0,0,.06);
+}
+
+.title{ grid-area: title; min-width: 0; }
+.title h1{
+  margin: 0;
+  font-size: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.title p{
+  margin: 4px 0 0;
+  opacity: .75;
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+.points-pill{
+  grid-area: points;
+  justify-self: end;
+
+  padding: 10px 12px;
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 105, 150, 0.18);
+
+  font-weight: 900;
+  font-size: 0.9rem;
+
+  white-space: nowrap;
+  max-width: 46vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.content{
+  width: min(900px, 100%);
+  margin: 0 auto;
+}
+
+/* Card principal (corta qualquer sobra) */
+.wheel-card{
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(255, 105, 150, 0.16);
+  border-radius: 18px;
+  padding: 14px;
+
+  box-shadow: 0 12px 28px rgba(0,0,0,.06);
+
+  display: grid;
+  gap: 14px;
+
+  overflow: hidden;        /* ✅ evita “vazar” do card */
+  max-width: 100%;
+}
+
+/* Wheel area */
+.wheel-area{
+  position: relative;
+  display: grid;
+  place-items: center;
+
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+
+  padding: 18px 12px 12px;
+  border-radius: 18px;
+
+  background: rgba(255,255,255,.55);
+  border: 1px solid rgba(255,105,150,.14);
+
+  overflow: hidden; /* ✅ mantém tudo dentro e organizado */
+}
+
+.pointer{
+  position: absolute;
+  top: 10px;
+  width: 0; height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 20px solid #ff2d6f;
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,.15));
+  z-index: 2;
+}
+
+/* Canvas 100% responsivo dentro do container */
+#wheel{
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  aspect-ratio: 1 / 1;
+
+  display: block;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 10px 22px rgba(0,0,0,.06);
+}
+
+/* Controles */
+.controls{
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.info, .result{
+  max-width: 100%;
+  overflow-wrap: anywhere; /* ✅ texto nunca estoura */
+}
+
+.info{
+  background: rgba(255,255,255,.55);
+  border: 1px solid rgba(255,105,150,.14);
+  border-radius: 16px;
+  padding: 12px;
+}
+
+.cost{ font-weight: 900; }
+.hint{
+  opacity: .8;
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+/* Botão */
+#spin{
+  width: 100%;
+  border: none;
+  border-radius: 14px;
+  padding: 12px 14px;
+  font-weight: 900;
+  cursor: pointer;
+
+  background: linear-gradient(135deg, rgba(255, 107, 147, 1), rgba(255, 159, 179, 1));
+  color: #fff;
+
+  box-shadow: 0 14px 30px rgba(255,105,150,.22);
+  transition: transform .12s ease, box-shadow .12s ease;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+#spin:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 18px 40px rgba(255,105,150,.26);
+}
+
+#spin:disabled{
+  opacity: .7;
+  cursor: not-allowed;
+}
+
+.result{
+  min-height: 44px;
+  padding: 12px 14px;
+  border-radius: 16px;
+
+  background: rgba(255,255,255,.55);
+  border: 1px solid rgba(255,105,150,.14);
+
+  font-weight: 900;
+}
+
+/* Footer */
+.footer{
+  margin-top: 14px;
+  text-align: center;
+  font-size: .8rem;
+  opacity: .8;
+}
+
+/* Tablet/Desktop */
+@media (min-width: 560px){
+  .topbar{
+    grid-template-areas: "back title points";
+    grid-template-columns: 140px minmax(0, 1fr) 170px;
+    align-items: center;
+  }
+
+  .title h1{ font-size: 22px; }
+
+  .wheel-card{
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  #wheel{ max-width: 420px; }
+}

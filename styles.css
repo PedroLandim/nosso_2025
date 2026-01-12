@@ -1,0 +1,475 @@
+:root {
+  --pink-light: #ffe5ec;
+  --pink: #ff9fb3;
+  --pink-strong: #ff6b93;
+  --card-bg: #fff7fa;
+  --text-main: #5a1f33;
+  --radius-xl: 24px;
+  --shadow-soft: 0 18px 40px rgba(0,0,0,0.08);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #ffeef5 0, #ffd6e8 40%, #ffc3dd 70%, #fff0f7 100%);
+  color: var(--text-main);
+  display: flex;
+  justify-content: center;
+  padding: 32px 16px;
+}
+
+.page {
+  width: 100%;
+  max-width: 960px;
+  position: relative;
+}
+
+/* Corações que aparecem onde você clica */
+.love-spark {
+  position: fixed;
+  width: 18px;
+  height: 18px;
+  background: var(--pink-strong);
+  transform: translate(-50%, -50%) rotate(45deg);
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 20;
+  opacity: 0.9;
+  animation: sparkUp 1.6s ease-out forwards;
+  box-shadow: 0 0 12px rgba(255, 107, 147, 0.8);
+}
+.love-spark::before,
+.love-spark::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: var(--pink-strong);
+  border-radius: 50%;
+}
+.love-spark::before {
+  top: -9px;
+  left: 0;
+}
+.love-spark::after {
+  left: -9px;
+  top: 0;
+}
+
+@keyframes sparkUp {
+  0% {
+    transform: translate(-50%, -50%) scale(0.5) rotate(45deg);
+    opacity: 0.95;
+  }
+  50% {
+    transform: translate(-50%, -120%) scale(1.1) rotate(45deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -220%) scale(0.7) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+/* Cabeçalho */
+header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.name {
+  font-size: clamp(2.4rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.subtitle {
+  margin-top: 8px;
+  font-size: 0.95rem;
+  color: #7b3a52;
+}
+
+/* Cards gerais */
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.8);
+}
+
+/* Seção tempo juntos */
+.time-section {
+  margin-bottom: 24px;
+}
+.time-section h2 {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8a3a54;
+}
+.time-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 12px;
+}
+.time-box {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 12px 8px;
+  text-align: center;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.04);
+}
+.time-box span.value {
+  display: block;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+.time-box span.label {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #b0607b;
+}
+
+/* Seção galeria */
+.gallery-section {
+  margin-top: 24px;
+}
+.gallery-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.gallery-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.chip {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.8);
+  border: 1px solid rgba(255,255,255,0.9);
+}
+
+.filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.filter-btn {
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.8);
+  background: rgba(255,255,255,0.6);
+  padding: 6px 14px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s, box-shadow 0.1s;
+}
+.filter-btn.active {
+  background: var(--pink-strong);
+  color: white;
+  box-shadow: 0 8px 20px rgba(255,105,135,0.35);
+  transform: translateY(-1px);
+}
+.filter-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* CTA do botão "Jogos" (no header) */
+.filter-btn.games-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  margin-top: 14px;
+  padding: 10px 18px;
+
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  background: linear-gradient(135deg, var(--pink-strong), var(--pink));
+  box-shadow: 0 14px 28px rgba(255, 105, 135, 0.35);
+  backdrop-filter: blur(10px);
+
+  position: relative;
+  overflow: hidden;
+}
+
+/* brilho passando por cima (bem sutil) */
+.filter-btn.games-cta::after {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,0.25) 45%,
+    transparent 70%
+  );
+  transform: translateX(-60%) rotate(12deg);
+  transition: transform 0.6s ease;
+}
+
+.filter-btn.games-cta:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 18px 36px rgba(255, 105, 135, 0.42);
+}
+
+.filter-btn.games-cta:hover::after {
+  transform: translateX(60%) rotate(12deg);
+}
+
+.filter-btn.games-cta:active {
+  transform: translateY(0px) scale(0.99);
+}
+
+/* foco acessível (teclado) */
+.filter-btn.games-cta:focus-visible {
+  outline: 3px solid rgba(255, 107, 147, 0.35);
+  outline-offset: 3px;
+}
+
+/* no mobile, fica mais "botão principal" */
+@media (max-width: 640px) {
+  .filter-btn.games-cta {
+    width: 100%;
+    max-width: 360px;
+  }
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+
+  max-height: 60vh;          /* limita a área de fotos */
+  overflow-y: auto;          /* scroll só aqui */
+  padding-right: 4px;
+
+  scrollbar-width: thin;     /* Firefox: barra mais fina */
+  -webkit-overflow-scrolling: touch; /* iOS/alguns WebKit: scroll mais suave */
+}
+
+/* Modo vertical para momentos aleatórios */
+.gallery-grid.random-mode {
+  grid-template-columns: 1fr;  
+  justify-items: center;
+}
+
+.gallery-grid.random-mode .photo-card {
+  max-width: 640px;
+}
+
+.gallery-grid.random-mode .photo-card img {
+  height: 380px;
+}
+
+.photo-card {
+  content-visibility: auto;
+  contain-intrinsic-size: 180px 180px;
+  contain: content;
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #fff;
+}
+.photo-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.photo-card:hover img {
+  transform: scale(1.05);
+}
+.photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.45), transparent);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: white;
+  font-size: 0.75rem;
+}
+.photo-tag {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.85;
+}
+.photo-caption {
+  margin-top: 2px;
+  font-weight: 400;
+  font-size: 0.75rem;
+
+  /* cortar texto depois de X linhas */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;  /* ← limite de linhas */
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Modal simples para foto */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 30;
+}
+.modal-backdrop.open {
+  display: flex;
+}
+.modal {
+  max-width: 1000px;   /* antes 800px */
+  width: 100%;
+  max-height: 95vh;    /* ocupa mais da tela */
+  border-radius: 20px;
+  background: #fff;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.modal img {
+  width: 100%;
+  max-height: 75vh;   /* antes 60vh */
+  object-fit: contain;
+  background: #000;
+}
+.modal-info {
+  padding: 12px 16px 16px;
+  font-size: 0.9rem;
+  color: #5a1f33;
+}
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  border: none;
+  background: rgba(255,255,255,0.85);
+  border-radius: 999px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.55);
+  color: white;
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 22px;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(6px);
+  transition: all 0.2s ease;
+}
+
+.nav-arrow:hover {
+  background: rgba(0,0,0,0.75);
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Agora bem coladinhas na foto */
+.nav-arrow.left  { left: 20px; }
+.nav-arrow.right { right: 20px; }
+
+/* Rodapé */
+footer {
+  text-align: center;
+  font-size: 0.8rem;
+  margin-top: 16px;
+  color: #7b3a52;
+  opacity: 0.9;
+}
+
+@media (max-width: 640px) {
+  .card {
+    padding: 20px 16px;
+  }
+
+  .time-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  /* ✅ filtros organizados no mobile */
+  .gallery-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .filters {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    width: 100%;
+  }
+
+  .filters .filter-btn {
+    width: 100%;
+    padding: 10px 8px;
+    font-size: 0.78rem;
+    line-height: 1.1;
+    text-align: center;
+
+    /* evita quebrar feio em telas pequenas */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    touch-action: manipulation;
+  }
+
+  /* Tudo e Momentos aleatórios em largura total */
+  .filters .filter-btn[data-filter="all"],
+  .filters .filter-btn[data-filter="random"] {
+    grid-column: 1 / -1;
+  }
+  .nav-arrow {
+    display: none !important;
+  }
+}
+

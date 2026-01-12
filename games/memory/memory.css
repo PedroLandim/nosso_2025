@@ -1,0 +1,271 @@
+.page {
+  min-height: 100vh;
+  padding: 14px 14px 22px;
+}
+
+/* Header clean + sticky */
+.topbar {
+  width: min(900px, 100%);
+  margin: 0 auto 14px;
+
+  position: sticky;
+  top: 10px;
+  z-index: 20;
+
+  display: grid;
+  grid-template-areas:
+    "back points"
+    "title title";
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+
+  padding: 12px;
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 105, 150, 0.18);
+  backdrop-filter: blur(12px);
+}
+
+.back-btn {
+  grid-area: back;
+  justify-self: start;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 800;
+  font-size: 0.9rem;
+
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 105, 150, 0.18);
+
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.back-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.06);
+}
+
+.title {
+  grid-area: title;
+}
+.title h1 {
+  margin: 0;
+  font-size: 20px;
+  letter-spacing: 0.01em;
+}
+.title p {
+  margin: 4px 0 0 0;
+  opacity: 0.75;
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+.points-pill {
+  grid-area: points;
+  justify-self: end;
+
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 105, 150, 0.18);
+  padding: 10px 12px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 0.9rem;
+}
+
+.content {
+  width: min(900px, 100%);
+  margin: 0 auto;
+}
+
+/* Card de status */
+.card {
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(255, 105, 150, 0.16);
+  border-radius: 18px;
+  padding: 14px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+}
+
+.header-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.stats {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pill {
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 105, 150, 0.14);
+  padding: 8px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.btn-soft {
+  border: 1px solid rgba(255, 105, 150, 0.18);
+  background: rgba(255, 255, 255, 0.65);
+  color: var(--text);
+  padding: 10px 12px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-soft:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.06);
+}
+
+/* GRID MOBILE FIRST: muitas colunas (cartas menores) */
+.grid {
+  display: grid;
+  gap: 10px;
+
+  /* auto-fit cria o máximo de colunas possíveis */
+  grid-template-columns: repeat(auto-fit, minmax(68px, 1fr));
+}
+
+/* Carta */
+.card-m {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  user-select: none;
+  cursor: pointer;
+
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 105, 150, 0.14);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.05);
+
+  /* quadradinho sem estourar */
+  aspect-ratio: 1 / 1;
+}
+
+/* Remove highlight azul no mobile */
+.card-m,
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  backface-visibility: hidden;
+  transition: transform 220ms ease;
+}
+
+.front {
+  transform: rotateY(0);
+  font-size: 26px; /* menor pro mobile */
+}
+
+.back {
+  transform: rotateY(180deg);
+  background: #fff;
+}
+
+.card-m.flipped .front {
+  transform: rotateY(-180deg);
+}
+.card-m.flipped .back {
+  transform: rotateY(0);
+}
+
+.back img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Match */
+.card-m.matched {
+  outline: 3px solid rgba(255, 122, 162, 0.55);
+  cursor: default;
+}
+
+/* Toast */
+.toast {
+  margin-top: 12px;
+  min-height: 24px;
+  text-align: center;
+  font-weight: 900;
+  opacity: 0.92;
+}
+
+/* Footer */
+.footer {
+  margin-top: 14px;
+  text-align: center;
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+/* Telas maiores: cartas crescem um pouco */
+@media (min-width: 560px) {
+  .topbar {
+    grid-template-areas: "back title points";
+    grid-template-columns: 140px 1fr 170px;
+    align-items: center;
+  }
+
+  .title h1 {
+    font-size: 22px;
+  }
+
+  .grid {
+    gap: 12px;
+    grid-template-columns: repeat(auto-fit, minmax(92px, 1fr));
+  }
+
+  .front {
+    font-size: 30px;
+  }
+
+  .header-card {
+    padding: 16px;
+  }
+}
+
+/* Desktop: deixa mais "cheio" e proporcional sem mexer no mobile */
+@media (min-width: 900px) {
+  .content {
+    width: min(800px, 100%);
+  }
+
+  .grid {
+    grid-template-columns: repeat(4, 1fr); /* 16 cartas = 4x4 perfeito */
+    gap: 14px;
+  }
+
+  .card-m {
+    border-radius: 18px;
+  }
+
+  .front {
+    font-size: 34px;
+  }
+}

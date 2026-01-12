@@ -1,0 +1,322 @@
+/* shop.css (clean + mobile-first, mesmo padrão dos minigames) */
+*{ box-sizing: border-box; }
+body{ overflow-x: hidden; }
+
+.page{
+  min-height: 100vh;
+  padding: 14px 14px calc(22px + env(safe-area-inset-bottom));
+}
+
+/* Header clean + sticky (padrão) */
+.topbar{
+  width: min(900px, 100%);
+  margin: 0 auto 14px;
+
+  position: sticky;
+  top: 10px;
+  z-index: 20;
+
+  display: grid;
+  grid-template-areas:
+    "back points"
+    "title title";
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+
+  padding: 12px;
+  border-radius: 18px;
+
+  background: rgba(255,255,255,.55);
+  border: 1px solid rgba(255,105,150,.18);
+  backdrop-filter: blur(12px);
+}
+
+.back-btn{
+  grid-area: back;
+  justify-self: start;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 900;
+  font-size: .9rem;
+
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.60);
+  border: 1px solid rgba(255,105,150,.18);
+
+  transition: transform .12s ease, box-shadow .12s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.back-btn:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(0,0,0,.06);
+}
+
+.title{
+  grid-area: title;
+  min-width: 0;
+}
+.title h1{
+  margin: 0;
+  font-size: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.title p{
+  margin: 4px 0 0;
+  opacity: .75;
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+.points-pill{
+  grid-area: points;
+  justify-self: end;
+
+  background: rgba(255,255,255,.60);
+  border: 1px solid rgba(255,105,150,.18);
+  padding: 10px 12px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: .9rem;
+
+  white-space: nowrap;
+  max-width: 46vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.content{
+  width: min(900px, 100%);
+  margin: 0 auto;
+  display: grid;
+  gap: 14px;
+}
+
+/* Card base */
+.card{
+  background: rgba(255,255,255,.65);
+  border: 1px solid rgba(255,105,150,.16);
+  border-radius: 18px;
+  padding: 16px;
+  box-shadow: 0 12px 28px rgba(0,0,0,.06);
+}
+
+.card-head{
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.card h2{
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: .01em;
+}
+
+.sub{
+  margin: 6px 0 0;
+  opacity: .75;
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+/* Grid de itens */
+.shop-grid{
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+@media (min-width: 460px){
+  .shop-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 760px){
+  .shop-grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* Card do item */
+.item{
+  background: rgba(255,255,255,.72);
+  border: 1px solid rgba(255,105,150,.18);
+  border-radius: 16px;
+  padding: 12px;
+
+  display: grid;
+  gap: 10px;
+
+  box-shadow: 0 10px 22px rgba(0,0,0,.05);
+}
+
+.item-top{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.item-name{
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  line-height: 1.1;
+}
+
+.item-desc{
+  margin: 6px 0 0;
+  opacity: .8;
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+/* “Você tem: xN” (seu JS provavelmente cria algo assim) */
+.item-owned,
+.owned,
+.have{
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 900;
+  opacity: .85;
+}
+
+.price{
+  flex: 0 0 auto;
+  font-weight: 900;
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: rgba(255,105,150,.12);
+  border: 1px solid rgba(255,105,150,.18);
+  white-space: nowrap;
+}
+
+/* Botão comprar (padrão) */
+.buy{
+  width: 100%;
+  border: none;
+  border-radius: 14px;
+  padding: 12px 14px;
+  font-weight: 900;
+  cursor: pointer;
+
+  background: linear-gradient(135deg, rgba(255,107,147,1), rgba(255,159,179,1));
+  color: #fff;
+
+  box-shadow: 0 14px 30px rgba(255,105,150,.22);
+  transition: transform .12s ease, box-shadow .12s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.buy:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 18px 40px rgba(255,105,150,.26);
+}
+.buy:active{ transform: translateY(0); }
+.buy:disabled{
+  opacity: .55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Mensagem */
+.msg{
+  margin-top: 12px;
+  min-height: 44px;
+  padding: 12px 14px;
+  border-radius: 16px;
+
+  background: rgba(255,255,255,.55);
+  border: 1px solid rgba(255,105,150,.14);
+
+  font-weight: 900;
+  text-align: center;
+}
+.msg:empty{ display: none; }
+
+/* Comprados */
+.bought-row{
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.bought-icon{
+  position: relative;
+
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+
+  display: grid;
+  place-items: center;
+
+  font-size: 26px;
+  line-height: 1;
+
+  background: rgba(255,255,255,.72);
+  border: 1px solid rgba(255,105,150,.18);
+  box-shadow: 0 10px 22px rgba(0,0,0,.05);
+}
+
+/* ✅ garante que qualquer badge dentro do ícone fique pequeno */
+.bought-icon .bought-count,
+.bought-icon .count,
+.bought-icon .badge,
+.bought-icon span{
+  position: absolute;
+  top: -8px;
+  right: -8px;
+
+  min-width: 24px;
+  height: 20px;
+  padding: 0 7px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 999px;
+  font-size: 12px !important;
+  font-weight: 900;
+  line-height: 1;
+
+  background: rgba(255,105,150,.95);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.85);
+  box-shadow: 0 8px 18px rgba(0,0,0,.12);
+}
+
+/* Se você tiver spans que NÃO são badge, dá pra ajustar no JS depois.
+   Por enquanto isso resolve o "número gigante". */
+
+.empty{
+  margin-top: 10px;
+  opacity: .65;
+  font-size: 13px;
+}
+
+/* Footer */
+.footer{
+  margin-top: 14px;
+  text-align: center;
+  font-size: .8rem;
+  opacity: .8;
+}
+
+/* Tablet/Desktop */
+@media (min-width: 560px){
+  .topbar{
+    grid-template-areas: "back title points";
+    grid-template-columns: 140px minmax(0, 1fr) 170px;
+    align-items: center;
+  }
+  .title h1{ font-size: 22px; }
+}
