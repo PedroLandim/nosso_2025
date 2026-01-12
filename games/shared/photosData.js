@@ -10,10 +10,22 @@ import { setembroPhotos } from "../../data/9-setembro.js";
 import { outubroPhotos } from "../../data/10-outubro.js";
 import { novembroPhotos } from "../../data/11-novembro.js";
 import { dezembroPhotos } from "../../data/12-dezembro.js";
-import { thumbFromSrc } from "./thumbs.js";
 
-// junta tudo
-const rawPhotos = [
+const ROOT = new URL("../../", import.meta.url); // volta da pasta games/shared -> raiz do repo
+
+function resolveFromRoot(path) {
+  if (!path) return "";
+  const s = String(path);
+
+  // já é URL absoluta
+  if (/^(https?:)?\/\//i.test(s)) return s;
+
+  // se vier "/fotos/..." remove a barra inicial
+  const clean = s.replace(/^\/+/, "").replace(/^\.\/+/, "");
+  return new URL(clean, ROOT).href;
+}
+
+export const photosData = [
   ...janeiroPhotos,
   ...fevereiroPhotos,
   ...marçoPhotos,
@@ -26,15 +38,7 @@ const rawPhotos = [
   ...outubroPhotos,
   ...novembroPhotos,
   ...dezembroPhotos,
-];
-
-// transforma os paths em absolutos e cria thumb automática
-export const photosData = rawPhotos.map((photo) => {
-  const cleanSrc = photo.src.startsWith("/") ? photo.src : "/" + photo.src;
-
-  return {
-    ...photo,
-    src: cleanSrc,                 // foto grande (modal)
-    thumb: thumbFromSrc(cleanSrc), // thumb leve (galeria, memória, etc.)
-  };
-});
+].map((p) => ({
+  ...p,
+  src: resolveFromRoot(p.src),
+}));

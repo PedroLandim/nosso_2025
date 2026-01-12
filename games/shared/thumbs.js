@@ -13,13 +13,9 @@ const THUMB_DIR_MAP = {
   "12-dezembro": "12-Dezembro",
 };
 
-export function thumbFromSrc(src) {
-  const clean = src.replaceAll("\\", "/");
-
-  // garante que sempre seja um path absoluto (começa com /)
-  const abs = clean.startsWith("/") ? clean : "/" + clean;
-
-  return abs
-    .replace(/^\/fotos\//, "/fotos/thumbs/")
-    .replace(/\.(jpe?g|png|webp)$/i, ".webp");
+export function thumbFromSrc(photoSrc) {
+  const href = new URL(photoSrc, import.meta.url).href; // se já for absoluta, mantém
+  return href
+    .replace("/fotos/", "/fotos/thumbs/")
+    .replace(/\.(jpe?g|png)(\?.*)?$/i, ".webp$2");
 }

@@ -60,11 +60,44 @@ function thumbFromSrc(src) {
 
 // ====================== CONTADOR TEMPO JUNTOS ==========================
 // 16 de julho de 2024 às 01:30
-const startDate = new Date("2024-07-16T01:30:00");
+const startDate = new Date("2024-07-16T01:30:00-03:00");
 
 function updateCounter() {
   const now = new Date();
-  let diffMs = now - startDate;
+  let end = now;
+  if (end < startDate) end = startDate;
+
+  // 1) anos e meses por calendário
+  let years = end.getFullYear() - startDate.getFullYear();
+  let months = end.getMonth() - startDate.getMonth();
+  let days = end.getDate() - startDate.getDate();
+
+  // Ajusta dias negativos pegando dias do mês anterior
+  if (days < 0) {
+    months -= 1;
+    // dias no mês anterior ao "end"
+    const daysInPrevMonth = new Date(end.getFullYear(), end.getMonth(), 0).getDate();
+    days += daysInPrevMonth;
+  }
+
+  // Ajusta meses negativos
+  if (months < 0) {
+    years -= 1;
+    months += 12;
+  }
+
+  // 2) Agora calcula horas/min/seg do "resto" (mesma data-base alinhada)
+  const anchor = new Date(
+    startDate.getFullYear() + years,
+    startDate.getMonth() + months,
+    startDate.getDate(),
+    startDate.getHours(),
+    startDate.getMinutes(),
+    startDate.getSeconds(),
+    startDate.getMilliseconds()
+  );
+
+  let diffMs = end - anchor;
   if (diffMs < 0) diffMs = 0;
 
   const totalSeconds = Math.floor(diffMs / 1000);
@@ -74,12 +107,6 @@ function updateCounter() {
   const totalHours = Math.floor(totalMinutes / 60);
   const hours = totalHours % 24;
 
-  const totalDays = Math.floor(totalHours / 24);
-  const years = Math.floor(totalDays / 365);
-  const remainingDaysAfterYears = totalDays - years * 365;
-  const months = Math.floor(remainingDaysAfterYears / 30);
-  const days = remainingDaysAfterYears - months * 30;
-
   document.getElementById("years").textContent = String(years).padStart(2, "0");
   document.getElementById("months").textContent = String(months).padStart(2, "0");
   document.getElementById("days").textContent = String(days).padStart(2, "0");
@@ -87,6 +114,7 @@ function updateCounter() {
   document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
   document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
 }
+
 
 document.addEventListener("DOMContentLoaded", () => {
   // contador
