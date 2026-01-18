@@ -20,9 +20,9 @@ const slices = [
   // ganhos
   { label: "+100 pts",  type: "points", value: 100,  weight: 16 },
   { label: "+100 pts",  type: "points", value: 100,  weight: 10 },
-  { label: "+200 pts",  type: "points", value: 200,  weight: 8 },
-  { label: "+500 pts",  type: "points", value: 500,  weight: 4 },
-  { label: "+1000 pts", type: "points", value: 1000, weight: 2 },
+  { label: "+200 pts",  type: "points", value: 200,  weight: 9 },
+  { label: "+500 pts",  type: "points", value: 500,  weight: 5 },
+  { label: "+1000 pts", type: "points", value: 1000, weight: 4 },
 
   // itens
   { label: "Beijo",   type: "item", value: { id: "beijo", name: "Cupom de Beijo" }, weight: 14 },
@@ -33,9 +33,9 @@ const slices = [
   { label: "Beijo na nuca", type: "item", value: { id: "beijo_nuca", name: "Beijo na nuca" }, weight: 1 },
 
   // perdas (reduzidas)
-  { label: "Perde 100 pts 😈", type: "points", value: -100, weight: 12 },
-  { label: "Perde 150 pts 😈", type: "points", value: -150, weight: 8 },
-  { label: "Perde 200 pts 😈", type: "points", value: -200, weight: 4 },
+  { label: "Perde 100 pts 😈", type: "points", value: -100, weight: 4 },
+  { label: "Perde 150 pts 😈", type: "points", value: -150, weight: 2 },
+  { label: "Perde 200 pts 😈", type: "points", value: -200, weight: 1 },
 ];
 
 const totalWeight = slices.reduce((a, s) => a + s.weight, 0);
